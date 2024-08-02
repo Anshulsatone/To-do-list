@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="night">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,16 +16,21 @@
 
     <title>TO-DOIT</title>
 </head>
-<body>    
+<body>
     <div class="container">
         <header>
             <h1>Todo List</h1>
             <!-- Error message -->
             <div class="alert-message"></div>
             <div class="input-section">
-                <input type="text" placeholder="Add a todo . . ." class="input input-bordered input-secondary w-full max-w-xs" />
-                <input type="date" class="input input-bordered input-secondary w-full max-w-xs schedule-date" />
-                <button class="btn btn-secondary add-task-button">
+                <input type="text" placeholder="Add a todo . . ." class="input input-bordered input-primary w-full max-w-xs task-input" />
+                <input type="date" class="input input-bordered input-primary w-full max-w-xs schedule-date" />
+                <select class="input input-bordered input-primary w-full max-w-xs priority-select">
+                    <option value="low">Low Priority</option>
+                    <option value="medium">Medium Priority</option>
+                    <option value="high">High Priority</option>
+                </select>
+                <button class="btn btn-primary add-task-button">
                     <i class="bx bx-plus bx-sm"></i>
                 </button>
             </div>
@@ -40,27 +45,32 @@
                     <li onclick="filterTodos('completed')"><a>Completed</a></li>
                 </ul>
             </div>
-            <button class="btn btn-secondary delete-all-btn">
+            <button class="btn btn-error delete-all-btn">
                 Delete All
+            </button>
+            <button class="btn btn-secondary theme-switcher-btn">
+                Switch Theme
             </button>
         </div>
 
-         <table class="table w-full">
-            <thead>
-                <tr>
-                    <th>Task</th>
-                    <th>Due Date</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody class="todos-list-body">
-            </tbody>
-        </table>
+        <div class="todos-list-wrapper">
+            <table class="table w-full">
+                <thead>
+                    <tr>
+                        <th>Task</th>
+                        <th>Due Date</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="todos-list-body">
+                </tbody>
+            </table>
+        </div>
 
     </div>
     <!-- JS -->
     <script src="script.js"></script>
-
 </body>
 </html>

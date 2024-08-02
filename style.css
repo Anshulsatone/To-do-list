@@ -1,28 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;800;900&display=swap');
 
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    background-color: rgb(0, 0, 0);
 }
 
 :root {
-    --color-primary: #5aff70;
-    --color-secondary: #4fff09;
+    --color-primary: #3498db;
+    --color-secondary: #2ecc71;
+    --color-danger: #e74c3c;
+    --color-warning: #f1c40f;
+    --color-info: #16a085;
+    --color-dark-bg: #2c3e50;
+    --color-light-bg: #ecf0f1;
+    --color-dark-text: #34495e;
+    --color-light-text: #f7f7f7;
+    --color-border: #dcdde1;
+    --color-shadow: rgba(0, 0, 0, 0.2);
 }
 
-body{
+body {
     position: relative;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--color-light-bg);
+    color: var(--color-dark-text);
 }
 
-.author-text{
+body.dark-theme {
+    background-color: var(--color-dark-bg);
+    color: var(--color-light-text);
+}
+
+.author-text {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -33,52 +47,42 @@ body{
     text-align: center;
 }
 
-
 .container {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin: 0 400px;
-    min-width: 640px;
+    width: 90%;
     max-width: 1000px;
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 8px 32px 0 rgba(48, 135, 31, 0.3);
-    backdrop-filter: blur( 3px );
-    -webkit-backdrop-filter: blur( 3px );
+    background: var(--color-light-bg);
+    box-shadow: 0 8px 32px 0 var(--color-shadow);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    padding: 20px;
+    border: 1px solid var(--color-border);
+    padding: 30px;
+    transition: all 0.3s ease;
 }
 
-.container header {
+.container.dark-theme {
+    background: var(--color-dark-bg);
+}
+
+header {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 header h1 {
-    font-size: 30px;
-    font-weight: 700;
-    margin-bottom: 10px;
-}
-
-.alert-message{
-    width: 100%;
-    transition: all 0.3s ease;
-    transform: scale(0.9);
-}
-
-.alert-message.show{
-    display: block;
-    transform: scale(1);
-}
-
-.alert-message.hide{
-    display: none;
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
 }
 
 header .input-section {
@@ -91,32 +95,133 @@ header .input-section {
     height: 100%;
 }
 
-.input-section input{
+.input-section input,
+.input-section select {
     margin-right: 10px;
-    max-width: 100%;
+    padding: 10px;
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
 }
 
-.todos-filter{
+.input-section input:focus,
+.input-section select:focus {
+    border-color: var(--color-primary);
+    outline: none;
+}
+
+.input-section button {
+    background-color: var(--color-primary);
+    color: var(--color-light-text);
+    border-radius: 5px;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+}
+
+.input-section button:hover {
+    background-color: var(--color-secondary);
+}
+
+.todos-filter {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     height: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
-.todos-list {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    min-height: 100%;
-    max-height: 54vh;
-    overflow-y: auto;
+.todos-filter button {
+    background-color: var(--color-danger);
+    color: var(--color-light-text);
+    border-radius: 5px;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+}
+
+.todos-filter button.theme-switcher-btn {
+    background-color: var(--color-info);
+}
+
+.todos-filter button.theme-switcher-btn:hover {
+    background-color: var(--color-secondary);
+}
+
+.todos-filter button:hover {
+    background-color: var(--color-secondary);
+}
+
+.todos-list-wrapper {
     width: 100%;
+    overflow-x: auto;
 }
 
-.todos-list .todo-item{
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.table th {
+    background-color: var(--color-primary);
+    color: var(--color-light-text);
+}
+
+.table td {
+    background-color: var(--color-light-bg);
+    color: var(--color-dark-text);
+    transition: background-color 0.3s ease;
+}
+
+.table tr:hover td {
+    background-color: var(--color-light-text);
+}
+
+body.dark-theme .table td {
+    background-color: var(--color-dark-bg);
+    color: var(--color-light-text);
+}
+
+.alert-message {
+    width: 100%;
+    transition: all 0.3s ease;
+    transform: scale(0.9);
+    display: none;
+}
+
+.alert-message.show {
+    display: block;
+    transform: scale(1);
+}
+
+.alert.alert-success {
+    background-color: var(--color-secondary);
+}
+
+.alert.alert-error {
+    background-color: var(--color-danger);
+}
+
+.alert.alert-warning {
+    background-color: var(--color-warning);
+}
+
+.alert {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-light-text);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.todo-item {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -126,7 +231,7 @@ header .input-section {
     border-bottom: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.todo-item p{
+.todo-item p {
     margin-right: 10px;
 }
 
@@ -139,10 +244,21 @@ header .input-section {
     height: 100%;
 }
 
-.todo-actions button:not(:last-child){
+.todo-actions button:not(:last-child) {
     margin-right: 10px;
 }
 
+.priority-low {
+    color: var(--color-info);
+}
+
+.priority-medium {
+    color: var(--color-warning);
+}
+
+.priority-high {
+    color: var(--color-danger);
+}
 
 /* Responsive */
 @media only screen and (max-width: 530px) {
@@ -150,5 +266,15 @@ header .input-section {
         margin: 0 20px;
         max-width: 96%;
         min-width: 96%;
+    }
+
+    header .input-section {
+        flex-direction: column;
+    }
+
+    header .input-section input,
+    header .input-section select,
+    header .input-section button {
+        margin-bottom: 10px;
     }
 }
